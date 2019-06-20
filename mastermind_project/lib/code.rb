@@ -65,8 +65,7 @@ class Code
     end
     count
   end
-#rgrb
-#ryyb
+
   def num_near_matches(guess)
     count = 0
     guessHash = Hash.new(0)
