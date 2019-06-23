@@ -32,7 +32,6 @@ class Board
     # expect(board).to receive(:[])
     # expect(board).to receive(:[]=)
     # board.attack([2, 4])
-
     result = @grid[pos[0]][pos[1]]
     #result = @grid.[]([pos[0]][pos[1]])
     if   result == :S
@@ -42,6 +41,20 @@ class Board
     else
         @grid[pos[0]][pos[1]] = :X
         return false
+    end
+  end
+
+  def place_random_ships()
+    ending = Integer.sqrt(@size)
+    ships = []
+    (0...ending).each do |i|
+      (0...ending).each do |j|
+        ships << [i,j]
+      end
+    end
+    ships = ships.sample(@size/4)
+    ships.each do |ship|
+      @grid[ship[0]][ship[1]] = :S
     end
 
   end
