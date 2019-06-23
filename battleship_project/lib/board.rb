@@ -25,4 +25,24 @@ class Board
     end
     count
   end
+
+  def attack(pos)
+    # board[pos] = :S       # this line...
+    # board.[]=(pos, :S)    # is same as this line. :)
+    # expect(board).to receive(:[])
+    # expect(board).to receive(:[]=)
+    # board.attack([2, 4])
+
+    result = @grid[pos[0]][pos[1]]
+    #result = @grid.[]([pos[0]][pos[1]])
+    if   result == :S
+      @grid[pos[0]][pos[1]] = :H
+      puts 'you sunk my battleship!'
+      return true
+    else
+        @grid[pos[0]][pos[1]] = :X
+        return false
+    end
+
+  end
 end
