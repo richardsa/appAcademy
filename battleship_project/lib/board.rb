@@ -71,4 +71,19 @@ class Board
     end
     hidden_grid
   end
+
+  def self.print_grid(grid)
+    grid.each do |ele|
+      print ele.join(' ')
+      puts
+    end
+  end
+
+  def cheat
+    Board.print_grid(@grid)
+  end
+
+  def print
+    Board.print_grid(hidden_ships_grid)
+  end
 end
