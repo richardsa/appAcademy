@@ -56,6 +56,19 @@ class Board
     ships.each do |ship|
       @grid[ship[0]][ship[1]] = :S
     end
+  end
 
+  def hidden_ships_grid()
+    hidden_grid =  @grid.map(&:clone)
+    ending = Integer.sqrt(@size)
+    count = 0
+    (0...ending).each do |i|
+      (0...ending).each do |j|
+        if hidden_grid[i][j] == :S
+          hidden_grid[i][j] = :N
+        end
+      end
+    end
+    hidden_grid
   end
 end
