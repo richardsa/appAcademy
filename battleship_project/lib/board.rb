@@ -32,15 +32,23 @@ class Board
     # expect(board).to receive(:[])
     # expect(board).to receive(:[]=)
     # board.attack([2, 4])
-    result = @grid[pos[0]][pos[1]]
-    #result = @grid.[]([pos[0]][pos[1]])
-    if   result == :S
-      @grid[pos[0]][pos[1]] = :H
-      puts 'you sunk my battleship!'
+    # result = @grid[pos[0]][pos[1]]
+    # #result = @grid.[]([pos[0]][pos[1]])
+    # if result == :S
+    #   @grid[pos[0]][pos[1]] = :H
+    #   puts 'you sunk my battleship!'
+    #   return true
+    # else
+    #     @grid[pos[0]][pos[1]] = :X
+    #     return false
+    # end
+    if self[pos] == :S
+      self[pos] = :H
+      puts "you sunk my battleship!"
       return true
     else
-        @grid[pos[0]][pos[1]] = :X
-        return false
+      self[pos] = :X
+      return false
     end
   end
 
