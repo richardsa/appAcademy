@@ -69,7 +69,7 @@ describe "flatten(data)" do
 
         array_1 = [1, 2, [[3, 4], [5, [6]]], [7, 8]]
         expect(flatten(array_1)).to eq([ 1, 2, 3, 4, 5, 6, 7, 8 ])
-        
+
         array_2 = ['this', ['problem', 'is'], [['pretty', 'tough'], [[':)']]]]
         expect(flatten(array_2)).to eq([ 'this', 'problem', 'is', 'pretty', 'tough', ':)'])
     end
