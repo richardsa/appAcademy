@@ -122,8 +122,18 @@ end
 #     2-dimensional array: [['some data']]
 #     3-dimensional array: [[['some data']]]
 def flatten(data)
+  result = []
   if !data.is_a?(Array)
-    return data.split(' ')
+    result << data
+  else
+    data.each do |element|
+      if element.is_a?(Array)
+        result.push(*flatten(element))
+      else
+        result << element
+      end
+    end
   end
-  flatten(data.join(' '))
+
+  result
 end
