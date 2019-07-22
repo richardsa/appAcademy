@@ -1,13 +1,44 @@
 # Write a method, all_vowel_pairs, that takes in an array of words and returns all pairs of words
 # that contain every vowel. Vowels are the letters a, e, i, o, u. A pair should have its two words
-# in the same order as the original array. 
+# in the same order as the original array.
 #
 # Example:
 #
 # all_vowel_pairs(["goat", "action", "tear", "impromptu", "tired", "europe"])   # => ["action europe", "tear impromptu"]
 def all_vowel_pairs(words)
+  vowels = {"a"=>1, "e"=>1, "i"=>1, "o"=>1, "u"=>1}
+  solution = []
+  words.each_with_index do |word, index|
+    vowel_hash = get_vowels(word)
+    i = index
+    while i < words.length
+      # make copy of original vowel hash
+      temp_hash = vowel_hash.dup
+      if get_vowels(words[i], temp_hash) == vowels
+        solution <<  word + " " +  words[i]
+        break
+      end
+      i += 1
+    end
+  end
 
+  solution
 end
+
+def get_vowels(word, vowel_count = nil)
+  vowels = "aeiou"
+  vowel_count ||= (vowel_count = Hash.new(0))
+  word.each_char do |ele|
+    if vowels.include?(ele.downcase)
+      if vowel_count[ele.downcase] == 0
+        vowel_count[ele.downcase] += 1
+      end
+    end
+  end
+  vowel_count
+end
+
+# all_vowel_pairs(["goat", "action", "tear", "impromptu", "tired", "europe"])
 
 
 # Write a method, composite?, that takes in a number and returns a boolean indicating if the number
