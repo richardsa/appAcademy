@@ -99,7 +99,14 @@ class Hash
     # hash_2.my_select { |k, v| k + 1 == v }      # => {10=>11, 5=>6, 7=>8})
     # hash_2.my_select                            # => {4=>4}
     def my_select(&prc)
-
+      prc ||= Proc.new { |k, v| k == v}
+      solution = {}
+      self.each do |k, v|
+        if prc.call(k, v)
+          solution[k] = v
+        end
+      end
+      solution
     end
 end
 
