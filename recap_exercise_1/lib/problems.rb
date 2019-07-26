@@ -120,9 +120,26 @@ class String
     # "cats".substrings     # => ["c", "ca", "cat", "cats", "a", "at", "ats", "t", "ts", "s"]
     # "cats".substrings(2)  # => ["ca", "at", "ts"]
     def substrings(length = nil)
-
+      solution = []
+      if length
+        beg = 0
+        ending = beg + length
+        while ending < self.length + 1
+          solution << self[beg...ending]
+          beg += 1
+          ending += 1
+        end
+      else
+        self.each_char.with_index do |letter, i|
+          place = i + 1
+          while place < self.length + 1
+            solution << self[i...place]
+            place += 1
+          end
+        end
+      end
+      solution
     end
-
 
     # Write a method, String#caesar_cipher, that takes in an a number.
     # The method should return a new string where each char of the original string is shifted
@@ -137,3 +154,4 @@ class String
 
     end
 end
+"cats".substrings(2)
