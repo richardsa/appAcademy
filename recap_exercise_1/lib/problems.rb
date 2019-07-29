@@ -151,7 +151,19 @@ class String
     # "bootcamp".caesar_cipher(2) #=> "dqqvecor"
     # "zebra".caesar_cipher(4)    #=> "difve"
     def caesar_cipher(num)
-
+      alph = "abcdefghijklmnopqrstuvwxyz"
+      last_index = alph.length - 1
+      solution = ''
+      self.each_char.with_index do |char, i|
+        pos = alph.index(char)
+        shifted_pos = pos + num
+        if shifted_pos < last_index
+          solution += alph[shifted_pos]
+        else
+          mod_pos = (shifted_pos % last_index) - 1
+          solution += alph[mod_pos]
+        end
+      end
+      solution
     end
 end
-"cats".substrings(2)
