@@ -1,8 +1,19 @@
-# Write a method, least_common_multiple, that takes in two numbers and returns the smallest number that is a mutiple 
+# Write a method, least_common_multiple, that takes in two numbers and returns the smallest number that is a mutiple
 # of both of the given numbers
 def least_common_multiple(num_1, num_2)
+  found = false
+  i = 1
+  solution = 0
+  until found
+    multiple = num_1 * i
+    if multiple % num_2 == 0
+      return multiple
+    end
+    i += 1
+  end
 
 end
+
 
 
 # Write a method, most_frequent_bigram, that takes in a string and returns the two adjacent letters that appear the
