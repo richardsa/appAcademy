@@ -3,7 +3,6 @@
 def least_common_multiple(num_1, num_2)
   found = false
   i = 1
-  solution = 0
   until found
     multiple = num_1 * i
     if multiple % num_2 == 0
@@ -11,7 +10,6 @@ def least_common_multiple(num_1, num_2)
     end
     i += 1
   end
-
 end
 
 
@@ -19,7 +17,12 @@ end
 # Write a method, most_frequent_bigram, that takes in a string and returns the two adjacent letters that appear the
 # most in the string.
 def most_frequent_bigram(str)
-
+  bigramHash = Hash.new(0)
+  (0...str.length-1).each do |i|
+    bigram = str[i..i+1]
+    bigramHash[bigram] += 1
+  end
+  return bigramHash.key(bigramHash.values.max)
 end
 
 
