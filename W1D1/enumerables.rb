@@ -48,11 +48,30 @@ class Array
     true
   end
 
-  def my_flatten()
-    return [self] if !self.is_a?(Array)
-    flattened = []
-    self.my_each { |el| flattened += el.my_flatten }
-    flattened
+  def my_flatten(data = nil)
+    data ||= self
+    # puts arr
+    # return [self] if !self.is_a?(Array)
+    # flattened = []
+    # arr.my_each do |el|
+    #   flattened += my_flatten(el)
+    # end
+    # flattened
+    result = []
+    if !data.is_a?(Array)
+      result << data
+    else
+      data.my_each do |element|
+        if element.is_a?(Array)
+          result.push(*my_flatten(element))
+        else
+          result << element
+        end
+      end
+    end
+
+    result
+
   end
 end
 
@@ -68,7 +87,7 @@ end
 # a.my_any? { |num| num == 4 } # => false
 # a.my_all? { |num| num > 1 } # => false
 # a.my_all? { |num| num < 4 } # => true
-[1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten # => [1, 2, 3, 4, 5, 6, 7, 8]
+# [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten  => [1, 2, 3, 4, 5, 6, 7, 8]
 # def my_select(&block)
 #   puts self.my_each { |b| b.block.call }
 # end
