@@ -50,13 +50,6 @@ class Array
 
   def my_flatten(data = nil)
     data ||= self
-    # puts arr
-    # return [self] if !self.is_a?(Array)
-    # flattened = []
-    # arr.my_each do |el|
-    #   flattened += my_flatten(el)
-    # end
-    # flattened
     result = []
     if !data.is_a?(Array)
       result << data
@@ -69,9 +62,25 @@ class Array
         end
       end
     end
-
     result
+  end
 
+  def my_zip(*args)
+  zipped = []
+  iterator = 0
+    self.my_each do |i|
+      zipped_element = [i]
+      args.my_each do |arg|
+        if !arg[iterator].nil?
+          zipped_element << arg[iterator]
+        else
+          zipped_element << nil
+        end
+      end
+      iterator += 1
+      zipped << zipped_element
+    end
+    zipped
   end
 end
 
@@ -87,7 +96,16 @@ end
 # a.my_any? { |num| num == 4 } # => false
 # a.my_all? { |num| num > 1 } # => false
 # a.my_all? { |num| num < 4 } # => true
-# [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten  => [1, 2, 3, 4, 5, 6, 7, 8]
+#[1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten  => [1, 2, 3, 4, 5, 6, 7, 8]
 # def my_select(&block)
 #   puts self.my_each { |b| b.block.call }
 # end
+# a = [ 4, 5, 6 ]
+# b = [ 7, 8, 9 ]
+# [1, 2, 3].my_zip(a, b) # => [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+# a.my_zip([1,2], [8])   # => [[4, 1, 8], [5, 2, nil], [6, nil, nil]]
+# [1, 2].my_zip(a, b)    # => [[1, 4, 7], [2, 5, 8]]
+#
+# c = [10, 11, 12]
+# d = [13, 14, 15]
+# [1, 2].my_zip(a, b, c, d)    # => [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14]]
