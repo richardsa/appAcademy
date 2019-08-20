@@ -104,6 +104,16 @@ class Array
     end
     return_string
   end
+
+  def my_reverse()
+    len = self.length - 1
+    reversed = []
+    until len < 0
+      reversed << self[len]
+      len -= 1
+    end
+    reversed
+  end
 end
 
 # a = [1, 2, 3, 4, 5, 6]
@@ -132,8 +142,15 @@ end
 # d = [13, 14, 15]
 # [1, 2].my_zip(a, b, c, d)    # => [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14]]
 
-a = [ "a", "b", "c", "d" ]
-a.my_rotate         #=> ["b", "c", "d", "a"]
-a.my_rotate(2)      #=> ["c", "d", "a", "b"]
-a.my_rotate(-3)     #=> ["b", "c", "d", "a"]
-a.my_rotate(15)     #=> ["d", "a", "b", "c"]
+# a = [ "a", "b", "c", "d" ]
+# a.my_rotate         #=> ["b", "c", "d", "a"]
+# a.my_rotate(2)      #=> ["c", "d", "a", "b"]
+# a.my_rotate(-3)     #=> ["b", "c", "d", "a"]
+# a.my_rotate(15)     #=> ["d", "a", "b", "c"]
+
+# a = [ "a", "b", "c", "d" ]
+# a.my_join         # => "abcd"
+# a.my_join("$")    # => "a$b$c$d"
+
+[ "a", "b", "c" ].my_reverse   #=> ["c", "b", "a"]
+[ 1 ].my_reverse               #=> [1]
