@@ -95,6 +95,15 @@ class Array
     end
     rotated
   end
+
+  def my_join(separator = '')
+    return_string = ''
+    self.my_each do |i|
+      return_string += i
+      return_string += separator
+    end
+    return_string
+  end
 end
 
 # a = [1, 2, 3, 4, 5, 6]
